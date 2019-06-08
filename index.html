@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Click Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		$('#myObj').click(function() {
+			$('#counter').html(+$('#counter').html()+1);
+		});
+	});
+</script>
+<style>
+	body{background-image: linear-gradient(90deg, #0D275A 0%, #3f9290 50%, #0D275A 100%);}
+	#myObj {width: 100%;filter: drop-shadow(0px 0px 10px #fff);-webkit-filter: drop-shadow(0px 0px 10px #fff);max-width: 300px}
+	#myObj:active {background: red;}
+	#allthis{text-align: center;}
+	#popup40s{display: none}
+	#popup80s{display: none}
+	#youwin{display: none}
+	/* TIMER */
+	#countdown {position: relative;margin: auto;height: 40px;width: 40px;text-align: center;}
+	#countdown-number {color: white;display: inline-block;line-height: 40px;}
+	svg {position: absolute;top: 0;right: 0;width: 40px;height: 40px;transform: rotateY(-180deg) rotateZ(-90deg);}
+	svg circle {stroke-dasharray: 113px;stroke-dashoffset: 0px;stroke-linecap: round;stroke-width: 2px;stroke: white;fill: none;animation: countdown 61s linear infinite forwards;}
+	@keyframes countdown {from {stroke-dashoffset: 0px;}to {stroke-dashoffset: 113px;}
+}
+</style>
+</head>
+<body>
+<div id="allthis">
+	<p>YOU HAVE 60 SECONDS TO</p>
+	<p>TAP THE BUTTON BELOW</p>
+	<div id="countdown">
+		<div id="countdown-number"></div>
+		  <svg>
+		    <circle r="18" cx="20" cy="20"></circle>
+		  </svg>
+	</div>
+	<div><img id="myObj" src="./assets/tab-button.png"></div>
+	<div id="counter">0</div>
+</div>
+	<!-- POPUPS -->
+	<div id="popup40s">
+		<p>Так держать! осталось 85 спинов!</p>
+	</div>
+
+	<div id="popup80s">
+		<p>Так держать! осталось 45 спинов!</p>
+	</div>
+
+	<div id="youwin">
+		<p>Поздравляем!</p>
+		<p>Вы выиграли!</p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var countdownNumberEl = document.getElementById('countdown-number');
+var countdown = 60;
+countdownNumberEl.textContent = countdown;
+setInterval(function() {
+  countdown = --countdown <= 0 ? 10 : countdown;
+  countdownNumberEl.textContent = countdown;
+}, 1000);
+</script>
